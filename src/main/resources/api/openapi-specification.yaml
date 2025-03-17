@@ -1,0 +1,62 @@
+openapi: 3.0.3
+info:
+  title: Token API Microservice
+  version: "1.0.0"
+  description: |
+    Microservice based on hexagonal architecture and DDD that exposes an endpoint to obtain a token.
+    Internally, an HTTP client (Feign) is used to obtain the token from an external service.
+servers:
+  - url: http://localhost:8081/api
+paths:
+  /token:
+    get:
+      summary: get Token
+      operationId: getToken
+      description: |
+        Returns a token obtained from an external service, accompanied by the current date and time in ISO 8601 format.
+      responses:
+        "200":
+          description: Successful.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/TokenResponseDto"
+        "404":
+          description: Token not found.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+        "500":
+          description: Internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorMessage"
+components:
+  schemas:
+    TokenResponseDto:
+      type: object
+      properties:
+        token:
+          type: string
+          description: The token received from the external service.
+          example: RECEIVED_TOKEN
+        timestamp:
+          type: string
+          description: Date and time the token was obtained.
+          example: 2025-02-27T14:00:00Z
+      required:
+        - token
+        - timestamp
+    ErrorMessage:
+      type: object
+      properties:
+        status:
+          type: string
+          description: HTTP status code of the error
+          example: 404 NOT_FOUND
+        message:
+          type: string
+          description: Error message describing the issue
+          example: The requested token could not be found.

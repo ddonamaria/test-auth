@@ -1,5 +1,12 @@
 spring:
-    application:
+  application:
         name: @project.name@
         version: @project.version@
         description: @project.description@
+server:
+  port: 8081
+
+feign:
+  client:
+    vivelibre:
+      url: ${VIVELIBRE_ClIENT_URL:http://localhost:8080}
