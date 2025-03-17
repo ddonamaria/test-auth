@@ -1,4 +1,4 @@
-# Proyecto Test-Auth
+# 🔐 Proyecto Test-Auth
 
 ## Descripción
 
@@ -66,6 +66,11 @@ java -jar target/book-filter-1.0.0.jar
 
 ### Ejecutar proyecto en contenedores
 
+- Generación de la imagen docker del proyecto local:
+```bash
+docker build -t test-auth:1.0.0 .
+```
+
 - Ejecutar proyectos en contenedores con docker-compose:
 ```bash
 docker-compose up
@@ -90,7 +95,7 @@ URL Swagger: http://localhost:8081/swagger-ui/index.html
 
 ### Obtener Token
 
-```json
+```
 POST /token
 ```
 **Respuesta**
