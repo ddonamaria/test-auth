@@ -1,0 +1,24 @@
+services:
+  auth-vivelibre:
+    image: skeet15/auth-vivelibre:latest
+    container_name: auth-vivelibre
+    ports:
+      - "8080:8080"
+    networks:
+      - token-network
+
+  auth-app:
+    image: daviddonamaria/test-auth:latest
+    container_name: test-auth
+    ports:
+      - "8081:8081"
+    networks:
+      - token-network
+    depends_on:
+      - auth-vivelibre
+    environment:
+      - VIVELIBRE_ClIENT_URL=http://auth-vivelibre:8080
+
+networks:
+  token-network:
+    driver: bridge
