@@ -93,11 +93,8 @@ El servicio expone el siguiente endpoint a traves de swagger:
 
 URL Swagger: http://localhost:8081/swagger-ui/index.html
 
-### Obtener Token
+**Endpoint**: (GET) /token
 
-```
-POST /token
-```
 **Respuesta**
 ```json
 {
